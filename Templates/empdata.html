@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f8;
+        padding: 20px;
+    }
+
+    .table-container {
+        max-width: 1200px;
+        margin: auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #ccc;
+        text-align: left;
+    }
+
+    th {
+        background-color: #b14f73ff;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="table-container">
+    <h2>Employee List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>DOB</th>
+                <th>Join Date</th>
+                <th>Designation</th>
+                <th>Salary</th>
+                <th>Bonus</th>
+                <th>Final Salary</th>
+                <th>Overtime</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in employees %}
+            <tr>
+                <td>
+                    {% if emp.Emp_photo %}
+                        <img src="{{ emp.Emp_photo.url }}" alt="Photo">
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>{{ emp.emp_id }}</td>
+                <td>{{ emp.emp_name }}</td>
+                <td>{{ emp.emp_city }}</td>
+                <td>{{ emp.emp_email }}</td>
+                <td>{{ emp.emp_phone }}</td>
+                <td>{{ emp.emp_DOB }}</td>
+                <td>{{ emp.date_of_joining }}</td>
+                <td>{{ emp.designation.title }}</td>
+                <td>{{ emp.emp_salary }}</td>
+                <td>{{ emp.bonus }}</td>
+                <td>{{ emp.salary }}</td>
+                <td>{{ emp.overtime }}</td>
+                <td>{{ emp.emp_address }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock body %}

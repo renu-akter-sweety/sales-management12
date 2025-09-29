@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block style  %}
+ <style>
+     body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f8;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            width: 100%;
+            background-color: #b14f73ff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+
+{% endblock style  %}
+{% block body %}   
+  <div class="form-container">
+        <h2>Add New Employee</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <label for="emp_name">Name</label>
+            <input type="text" name="emp_name" required>
+
+            <label for="emp_id">Employee ID</label>
+            <input type="number" name="emp_id" required>
+
+            <label for="emp_city">City</label>
+            <input type="text" name="emp_city" required>
+
+            <label for="emp_salary">Salary</label>
+            <input type="number" name="emp_salary" required>
+
+            <label for="emp_DOB">Date of Birth</label>
+            <input type="date" name="emp_DOB" required>
+
+            <label for="emp_email">Email</label>
+            <input type="email" name="emp_email" required>
+
+            <label for="emp_phone">Phone</label>
+            <input type="text" name="emp_phone" required>
+
+            <label for="emp_address">Address</label>
+            <input type="text" name="emp_address" required>
+
+            <label for="emp_photo">Photo</label>
+            <input type="file" name="emp_photo" >
+
+            <label for="overtime">Overtime</label>
+            <input type="number" name="overtime" required>
+
+            <label for="date_of_joining">Date of Joining</label>
+            <input type="date" name="date_of_joining" required>
+
+            <label for="bonus">Bonus</label>
+            <input type="number" name="bonus" required>
+
+            <label for="salary">Final Salary</label>
+            <input type="number" name="salary" required>
+
+            <label for="designation">Designation</label>
+            <select name="designation_id" required>
+                {% for designation in designations %}
+                    <option value="{{ designation.id }}">{{ designation.title }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+{% endblock body %}
